@@ -48,6 +48,7 @@ function Cave() {
     const handleClick = () => {
         console.log("bh");
         setIsDisabled(true);
+        cavi.handleStoreCavedItem
         setTimeout(() => {
             console.log("h");
             setIsDisabled(false);
@@ -71,11 +72,11 @@ function CaveItemList() {
     return (
         <div>
             <h1>광산 채굴 아이템 목록</h1><br />
-            <h2>광석명&nbsp;&nbsp;가격&nbsp;&nbsp;희귀도&nbsp;&nbsp;</h2>
+            <h2>광석명&nbsp;&nbsp;가격&nbsp;&nbsp;희귀도&nbsp;&nbsp;가능재화</h2>
             <ul>
                 {caveItemList.map((v, i) => (
                     <li key={i}>
-                        {v.name}&nbsp;&nbsp;{v.cost}&nbsp;&nbsp;{v.rarity}
+                        {v.name}&nbsp;&nbsp;{v.cost}&nbsp;&nbsp;{v.rarity}&nbsp;&nbsp;{v.cost_type}
                     </li>
                 ))}
             </ul>
@@ -89,4 +90,15 @@ function Probability() {
             <h1>hello world 2</h1>
         </div>
     );
+}
+
+function getRandomItem() {
+    const randomIndex = randint(0, caveItemList.length);
+    const result = caveItemList[randomIndex];
+    return result;
+
+}
+
+function randint(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
