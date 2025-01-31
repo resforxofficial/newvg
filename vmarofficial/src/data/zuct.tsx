@@ -25,6 +25,7 @@ interface CaveInformationAction {
     handleChangeCaveName: (newName: string) => void;
     handleChangeCoolTime: (newVal: number) => void;
     handleStoreCavedItem: (newItem: string) => void;
+    handleDeleteCavedItem: (newValssss: string) => void;
 }
 
 type ALL = BaseInformation & BaseMoneyInformation & CaveInformation & CaveInformationAction;
@@ -50,8 +51,19 @@ export const useStore = create<ALL>((set) => ({
     handleChangeCoolTime: (n) => set(() => ({ coolTime: n })),
     handleStoreCavedItem: (n) =>
         set((s) => ({
-            cavedItem: [...s.cavedItem, n], // 상태 업데이트를 반환
+            cavedItem: [...s.cavedItem, n],
         })),
+    handleDeleteCavedItem: (n) => set((state) => {
+        const newCavedItems = state.cavedItem.filter(item => item !== n);
+
+        const item = caveItemList.find(i => i.name === n);
+        const newBronze = item ? state.bronze + item.cost : state.bronze;
+
+        return {
+            cavedItem: newCavedItems,
+            bronze: newBronze,
+        };
+    }),
 }));
 
 type CostType = "브론즈" | "실버" | "골드" | "다이아";
@@ -66,9 +78,9 @@ interface ICaveItemList {
 
 export const caveItemList: ICaveItemList[] = [
     { name: "돌", cost: 150, rarity: "pending", cost_type: "브론즈", chance: 10000 },
-    { name: "철", cost: 150, rarity: "pending", cost_type: "브론즈", chance: 5000 },
-    { name: "석탄", cost: 150, rarity: "pending", cost_type: "브론즈", chance: 2500 },
-    { name: "구리", cost: 150, rarity: "pending", cost_type: "브론즈", chance: 1250 },
-    { name: "레드스톤", cost: 150, rarity: "pending", cost_type: "브론즈", chance: 750 },
-    { name: "은", cost: 150, rarity: "pending", cost_type: "브론즈", chance: 200 },
+    { name: "철", cost: 175, rarity: "pending", cost_type: "브론즈", chance: 5000 },
+    { name: "석탄", cost: 205, rarity: "pending", cost_type: "브론즈", chance: 2500 },
+    { name: "구리", cost: 250, rarity: "pending", cost_type: "브론즈", chance: 1250 },
+    { name: "레드스톤", cost: 300, rarity: "pending", cost_type: "브론즈", chance: 750 },
+    { name: "은", cost: 355, rarity: "pending", cost_type: "브론즈", chance: 200 },
 ];

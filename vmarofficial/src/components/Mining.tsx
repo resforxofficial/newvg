@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useStore, caveItemList } from '../data/zuct';
+import { useNavigate } from "react-router-dom";
 
 export default function Mining() {
     const [isClicked, setIsClicked] = useState(false);
     const [isClickItem, setIsClickItem] = useState(false);
     const [isClickProby, setIsClickProby] = useState(false);
+    const hist = useNavigate();
 
     return (
         <div>
@@ -37,6 +39,7 @@ export default function Mining() {
             {isClicked && <Cave />}
             {isClickItem && <CaveItemList />}
             {isClickProby && <Probability />}
+            <br /><br /><button style={{ "fontSize": "11px" }} onClick={() => hist(-1)}>Back</button>
         </div>
     );
 }
@@ -48,7 +51,7 @@ function Cave() {
     const handleClick = () => {
         console.log("bh");
         setIsDisabled(true);
-        cavi.handleStoreCavedItem
+        cavi.handleStoreCavedItem(getRandomItem().name);
         setTimeout(() => {
             console.log("h");
             setIsDisabled(false);

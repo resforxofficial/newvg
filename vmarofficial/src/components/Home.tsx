@@ -8,6 +8,8 @@ export default function Home() {
             <Link to="/create_item"><button>조각 제작소</button></Link>&nbsp;&nbsp;
             <Link to="/create_piece"><button>아이템 제작소</button></Link>&nbsp;&nbsp;
             <Link to="/upgrade"><button>업그레이드</button></Link>&nbsp;&nbsp;
+            <Link to="/inventory"><button>인벤토리</button></Link>&nbsp;&nbsp;
+            <Link to="/store"><button>상점</button></Link>
         </div>
     );
 }
