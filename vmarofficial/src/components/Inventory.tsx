@@ -9,7 +9,7 @@ export default function Inventory() {
         <div>
             <h1>인벤토리</h1>
             <div>
-                
+                <h3>브론즈: {cavi.bronze ?? 0}</h3>
             </div>
             <h2>아이템 번호&nbsp;&nbsp;&nbsp;아이템 명</h2>
             <ul>

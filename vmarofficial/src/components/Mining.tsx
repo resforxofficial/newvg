@@ -49,6 +49,7 @@ function Cave() {
     const [isDisabled, setIsDisabled] = useState(false);
 
     const handleClick = () => {
+        if (cavi.cavedItem.length >= 5) return; // 만약 아이템이 5개 이상이면 동작 X
         console.log("bh");
         setIsDisabled(true);
         cavi.handleStoreCavedItem(getRandomItem().name);
@@ -56,20 +57,27 @@ function Cave() {
             console.log("h");
             setIsDisabled(false);
         }, cavi.coolTime);
-    }
+    };
 
     return (
         <div>
             <br />
             <h1>Lv. {cavi.level} {cavi.caveName}</h1>
             <h2>쿨타임: {cavi.coolTime / 1000 + 1}초</h2>
-            <button onClick={handleClick} disabled={isDisabled} className={isDisabled ? "urteka" : ""}>
+            <button
+                onClick={handleClick}
+                disabled={isDisabled || cavi.cavedItem.length >= 5}
+                className={isDisabled || cavi.cavedItem.length >= 5 ? "urteka" : ""}
+            >
                 채굴
-            </button>
+            </button>&nbsp;&nbsp;
+            <button >업그레이드</button>
+            {cavi.cavedItem.length >= 5 && <p>⛔ 인벤토리가 가득 찼습니다!</p>}
             <br />
         </div>
     );
 }
+
 
 function CaveItemList() {
     return (
@@ -104,4 +112,8 @@ function getRandomItem() {
 
 function randint(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function upgradeCave() {
+    
 }
