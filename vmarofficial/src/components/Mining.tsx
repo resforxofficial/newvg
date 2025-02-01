@@ -62,7 +62,7 @@ function Cave() {
     return (
         <div>
             <br />
-            <h1>Lv. {cavi.level} {cavi.caveName}</h1>
+            <h1>Lv. {cavi.caveLevel} {cavi.caveName}</h1>
             <h2>쿨타임: {cavi.coolTime / 1000 + 1}초</h2>
             <button
                 onClick={handleClick}
@@ -71,13 +71,14 @@ function Cave() {
             >
                 채굴
             </button>&nbsp;&nbsp;
-            <button >업그레이드</button>
+            <button onClick={cavi.handleUpgradeCave} disabled={cavi.caveLevel >= 30}>
+                업그레이드
+            </button>
             {cavi.cavedItem.length >= 5 && <p>⛔ 인벤토리가 가득 찼습니다!</p>}
             <br />
         </div>
     );
 }
-
 
 function CaveItemList() {
     return (
@@ -115,5 +116,5 @@ function randint(min: number, max: number) {
 }
 
 function upgradeCave() {
-    
+
 }
